@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { supabase } from '@/integrations/supabase/client';
+// import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
 
@@ -33,32 +33,32 @@ const NewsletterForm = () => {
 
     setIsLoading(true);
 
-    try {
-      const { data, error } = await supabase.functions.invoke('subscribe-newsletter', {
-        body: { email, source: 'footer' },
-      });
+    // try {
+    //   const { data, error } = await supabase.functions.invoke('subscribe-newsletter', {
+    //     body: { email, source: 'footer' },
+    //   });
 
-      if (error) throw error;
+    //   if (error) throw error;
 
-      setIsSuccess(true);
-      setEmail('');
-      toast({
-        title: "Success!",
-        description: data.message || "You've been subscribed to our newsletter.",
-      });
+    //   setIsSuccess(true);
+    //   setEmail('');
+    //   toast({
+    //     title: "Success!",
+    //     description: data.message || "You've been subscribed to our newsletter.",
+    //   });
 
-      // Reset success state after 3 seconds
-      setTimeout(() => setIsSuccess(false), 3000);
-    } catch (error: any) {
-      console.error('Newsletter subscription error:', error);
-      toast({
-        title: "Subscription Failed",
-        description: error.message || "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    //   // Reset success state after 3 seconds
+    //   setTimeout(() => setIsSuccess(false), 3000);
+    // } catch (error: any) {
+    //   console.error('Newsletter subscription error:', error);
+    //   toast({
+    //     title: "Subscription Failed",
+    //     description: error.message || "Something went wrong. Please try again.",
+    //     variant: "destructive",
+    //   });
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   return (
