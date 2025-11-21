@@ -94,20 +94,12 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
+        <div className="mt-12 pt-8 border-t border-border/50 flex flex-col items-center justify-center gap-2">
+          <p className="text-sm text-muted-foreground text-center">
             © {new Date().getFullYear()} RYT TechCorp. All rights reserved.
           </p>
-          <div className="flex items-center space-x-6 text-sm text-muted-foreground">
-            <span className="flex items-center space-x-2">
-              <div className="w-2 h-2 rounded-full bg-neon" />
-              <span>ISO 27001 Certified</span>
-            </span>
-            <span className="flex items-center space-x-2">
-              <div className="w-2 h-2 rounded-full bg-neon" />
-              <span>SOC 2 Type II</span>
-            </span>
-          </div>
+          {/* Agar baad me kuch aur info add karni ho (badges, links, etc.) 
+              toh yahi pe ek aur div ya span add kar sakte ho */}
         </div>
       </div>
     </footer>

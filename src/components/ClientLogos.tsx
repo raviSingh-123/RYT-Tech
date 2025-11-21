@@ -51,7 +51,7 @@ const ClientLogos = () => {
                 x: {
                   repeat: Infinity,
                   repeatType: "loop",
-                  duration: 10,
+                  duration: 7,
                   ease: "linear",
                 },
               }}
