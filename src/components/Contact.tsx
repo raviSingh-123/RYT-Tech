@@ -27,7 +27,7 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/message", {
+      const res = await fetch("https://ryt-tech-backend.onrender.com/api/users/message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

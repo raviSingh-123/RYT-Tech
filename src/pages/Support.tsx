@@ -130,7 +130,7 @@ const Support = () => {
     setIsSubmitting(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/tickets/ticket", {
+      const res = await fetch("https://ryt-tech-backend.onrender.com/api/tickets/ticket", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
