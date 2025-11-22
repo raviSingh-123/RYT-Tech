@@ -9,8 +9,7 @@ const Navigation = () => {
   const location = useLocation();
 
   const navItems = [
-    { label: "Solutions", href: "/#solutions", isHash: true },
-    { label: "Services", href: "/#services", isHash: true },
+    { label: "Solutions", href: "/#services", isHash: true },
     { label: "Resources", href: "/resources", isHash: false },
     { label: "Blog", href: "/#blog", isHash: true },
     { label: "Contact", href: "/#contact", isHash: true },
@@ -65,7 +64,8 @@ const Navigation = () => {
             <Button
               variant="default"
               className="gradient-premium soft-glow hover:scale-105 transition-transform duration-200"
-              onClick={() => handleNavClick("/#contact", true)}
+              onClick={() => navigate('/contact')}
+              aria-label="Go to contact form"
             >
               Get Started
             </Button>
@@ -96,7 +96,8 @@ const Navigation = () => {
             <Button
               variant="default"
               className="w-full gradient-premium soft-glow"
-              onClick={() => handleNavClick("/#contact", true)}
+              onClick={() => navigate('/contact')}
+              aria-label="Go to contact form"
             >
               Get Started
             </Button>

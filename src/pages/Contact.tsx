@@ -2,11 +2,16 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import PageBackground from "@/components/PageBackground";
+import { Card } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import { toast } from "@/hooks/use-toast";
 import { useState } from "react";
 
 const Contact = () => {
-   const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -61,77 +66,93 @@ const Contact = () => {
     }
   };
   return (
-    <section id="contact" className="py-24 lg:py-32 relative">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left Content */}
-          <div className="space-y-8">
-            <div>
-              <div className="inline-flex items-center px-4 py-2 rounded-full glass-card border border-border-neon/30 mb-4">
+    <PageBackground>
+      <Navigation />
+      <main className="pt-24 pb-16">
+        <section className="py-24 lg:py-32 relative">
+          <div className="container mx-auto px-4 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <div className="inline-flex items-center px-4 py-2 rounded-full glass-card border border-border-neon/30 mb-6">
                 <span className="text-sm font-medium text-neon">Get in Touch</span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
                 Let's Secure Your
                 <span className="gradient-premium bg-clip-text text-transparent"> Digital Future</span>
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                 Talk to our security experts about protecting your infrastructure, 
                 implementing AI solutions, or building enterprise software.
               </p>
-            </div>
+            </motion.div>
 
-            {/* Contact Info */}
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 rounded-xl gradient-premium flex items-center justify-center soft-glow flex-shrink-0">
-                  <Mail className="w-5 h-5 text-background" />
-                </div>
-                <div>
-                  <div className="font-semibold mb-1">Email Us</div>
-                  <a href="mailto:contact@ryttechcorp.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    contact@ryttechcorp.com
-                  </a>
-                </div>
-              </div>
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 max-w-6xl mx-auto">
+              {/* Left Content */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="space-y-8"
+              >
+                {/* Contact Info */}
+                <div className="space-y-6">
+                  <Card className="glass-card p-6 rounded-xl">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 rounded-xl gradient-premium flex items-center justify-center soft-glow flex-shrink-0">
+                        <Mail className="w-6 h-6 text-background" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-1">Email</h3>
+                        <a href="mailto:contact@ryttechcorp.com" className="text-muted-foreground hover:text-neon transition-colors">
+                          contact@ryttechcorp.com
+                        </a>
+                      </div>
+                    </div>
+                  </Card>
 
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 rounded-xl gradient-premium flex items-center justify-center soft-glow flex-shrink-0">
-                  <Phone className="w-5 h-5 text-background" />
-                </div>
-                <div>
-                  <div className="font-semibold mb-1">Call Us</div>
-                  <a href="tel:+15551234567" className="text-muted-foreground hover:text-primary transition-colors">
-                    +91 7291034330
-                  </a>
-                </div>
-              </div>
+                  <Card className="glass-card p-6 rounded-xl">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 rounded-xl gradient-premium flex items-center justify-center soft-glow flex-shrink-0">
+                        <Phone className="w-6 h-6 text-background" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-1">Phone</h3>
+                        <a href="tel:+1234567890" className="text-muted-foreground hover:text-neon transition-colors">
+                        +91 7291034330
+                        </a>
+                      </div>
+                    </div>
+                  </Card>
 
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 rounded-xl gradient-premium flex items-center justify-center soft-glow flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-background" />
+                  <Card className="glass-card p-6 rounded-xl">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 rounded-xl gradient-premium flex items-center justify-center soft-glow flex-shrink-0">
+                        <MapPin className="w-6 h-6 text-background" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-1">Office</h3>
+                        <p className="text-muted-foreground">
+                        New Delhi<br />
+                        India
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
                 </div>
-                <div>
-                  <div className="font-semibold mb-1">Visit Us</div>
-                  <p className="text-muted-foreground">
-                    New Delhi<br />
-                    India
-                  </p>
-                </div>
-              </div>
-            </div>
+              </motion.div>
 
-            {/* Response Time */}
-            <div className="glass-card p-6 rounded-xl border border-border-neon/30">
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 rounded-full bg-neon animate-pulse" />
-                <span className="font-semibold">Typical response time: Under 24 hours</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Form */}
-          <div className="glass-card p-8 lg:p-10 rounded-2xl border border-border-neon/30">
-           <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Right Form */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <Card className="glass-card p-8 rounded-xl">
+                  <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label htmlFor="firstName" className="text-sm font-medium">
@@ -223,11 +244,16 @@ const Contact = () => {
                 By submitting this form, you agree to our Privacy Policy and Terms of Service.
               </p>
             </form>
+                </Card>
+              </motion.div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      </main>
+      <Footer />
+    </PageBackground>
   );
 };
 
 export default Contact;
+

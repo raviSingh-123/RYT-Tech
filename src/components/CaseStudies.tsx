@@ -3,35 +3,40 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Building2, TrendingUp, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useScrollTrigger } from '@/hooks/use-scroll-trigger';
+import { useNavigate } from 'react-router-dom';
 
 const CaseStudies = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useScrollTrigger(sectionRef, 0.2);
+  const navigate = useNavigate();
 
   const studies = [
     {
-      company: 'Humotion AI',
-      industry: 'Artificial Intelligence & ML',
-      challenge: 'Legacy infrastructure vulnerable to modern cyber threats',
-      solution: 'AI-powered threat detection with 24/7 monitoring',
-      results: ['99.99% uptime achieved', '80% reduction in security incidents', '$2M+ cost savings'],
+      company: 'HumotionAI',
+      industry: 'Artificial Intelligence & Emotional Intelligence',
+      challenge: 'Needed a full website to explain EI tech, voice interactions, and emotion engine value.',
+      solution: 'RYT TechCorp built end-to-end pages covering EI engine, demos, enterprise modules, and compliance.',
+      results: ['3x improvement in user engagement', 'Complete EI-focused brand identity established', 'Faster onboarding through clear product communication'],
       icon: Building2,
+      slug: 'humotionai',
     },
     {
       company: 'SochBoxAI',
       industry: 'AI for Social Media Creators',
-      challenge: 'HIPAA compliance and patient data protection',
-      solution: 'Zero-trust security architecture with encrypted workflows',
-      results: ['Full HIPAA compliance', '95% faster incident response', '100% data breach prevention'],
+      challenge: 'Creators struggled with leaks, asset misuse, slow approvals, and disjointed collaboration.',
+      solution: 'Secured AI workflow website with encrypted media hubs, automation flows, and branded collaboration modules.',
+      results: ['99.7% reduction in unauthorized access', '70% faster content approvals', 'Zero content leaks across creator teams'],
       icon: Shield,
+      slug: 'sochboxai',
     },
     {
       company: 'Expense Tracker',
       industry: 'Finance & Banking',
-      challenge: 'Scaling security infrastructure during rapid growth',
-      solution: 'Cloud-native security platform with AI automation',
-      results: ['500% traffic growth handled', '60% cost optimization', 'Zero downtime in 18 months'],
+      challenge: 'Users lacked visibility into spending, fraud indicators, and sustainable money habits.',
+      solution: 'Delivered an AI-driven expense site with automated categorization, fraud alerts, and insight-rich UI flows.',
+      results: ['32% better savings by users', '10M+ secure monthly transactions handled', 'Zero fraudulent withdrawals'],
       icon: TrendingUp,
+      slug: 'expensetracker',
     },
   ];
 
@@ -114,8 +119,9 @@ const CaseStudies = () => {
                 <Button
                   variant="ghost"
                   className="w-full justify-between hover:bg-neon/10 hover:text-neon transition-all"
+                  onClick={() => navigate(`/case-studies/${study.slug}`)}
                 >
-                  Read Full Case Study
+                  Read Full Case Study →
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </div>

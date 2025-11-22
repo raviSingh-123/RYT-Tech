@@ -8,12 +8,15 @@ import { useScrollTrigger } from '@/hooks/use-scroll-trigger';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import AnimatedBorder from '@/components/AnimatedBorder';
+import { useNavigate } from 'react-router-dom';
 
 const Resources = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useScrollTrigger(sectionRef, 0.2);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const navigate = useNavigate();
 
   const categories = ['All', 'Guides', 'API Docs', 'Whitepapers', 'Case Studies'];
 
@@ -218,7 +221,7 @@ const Resources = () => {
                           <Button
                             variant="ghost"
                             className="hover:text-neon transition-colors"
-                            onClick={() => window.open(resource.downloadUrl, '_blank')}
+                            onClick={() => ("#")}
                           >
                             <Download className="w-4 h-4 mr-2" />
                             Download
@@ -250,7 +253,7 @@ const Resources = () => {
               Our team can create tailored technical documentation and training materials for your specific security needs.
             </p>
             <AnimatedBorder>
-              <Button size="lg" className="gradient-premium text-lg px-8">
+              <Button size="lg" className="gradient-premium text-lg px-8" onClick={()=> navigate('/contact')}>
                 Contact Our Team
               </Button>
             </AnimatedBorder>

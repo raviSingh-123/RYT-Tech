@@ -5,27 +5,23 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 // import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { z } from 'zod';
+import { set } from 'date-fns';
 
-const emailSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }).max(255),
-});
+
 
 const NewsletterForm = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    
-    // Validate email
-    const validation = emailSchema.safeParse({ email });
-    if (!validation.success) {
+
+    if (!email) {
       toast({
-        title: "Invalid Email",
-        description: validation.error.errors[0].message,
+        title: "Email required",
+        description: "Please enter a valid email",
         variant: "destructive",
       });
       return;
@@ -33,32 +29,36 @@ const NewsletterForm = () => {
 
     setIsLoading(true);
 
-    // try {
-    //   const { data, error } = await supabase.functions.invoke('subscribe-newsletter', {
-    //     body: { email, source: 'footer' },
-    //   });
+    try {
+      const response = await fetch("http://localhost:5000/api/users/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
 
-    //   if (error) throw error;
+      const data = await response.json();
 
-    //   setIsSuccess(true);
-    //   setEmail('');
-    //   toast({
-    //     title: "Success!",
-    //     description: data.message || "You've been subscribed to our newsletter.",
-    //   });
+      if (!response.ok) {
+        throw new Error(data.message || "Subscription failed");
+      }
 
-    //   // Reset success state after 3 seconds
-    //   setTimeout(() => setIsSuccess(false), 3000);
-    // } catch (error: any) {
-    //   console.error('Newsletter subscription error:', error);
-    //   toast({
-    //     title: "Subscription Failed",
-    //     description: error.message || "Something went wrong. Please try again.",
-    //     variant: "destructive",
-    //   });
-    // } finally {
-    //   setIsLoading(false);
-    // }
+      setIsSuccess(true);
+      toast({
+        title: "Subscribed 🎉",
+        description: "You've successfully subscribed to our newsletter.",
+      });
+
+    } catch (error) {
+      toast({
+        title: "Failed to Subscribe ❌",
+        description: error.message || "Something went wrong",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+
+    setEmail('');
   };
 
   return (

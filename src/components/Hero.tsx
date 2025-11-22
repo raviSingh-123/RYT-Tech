@@ -1,11 +1,14 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import ParticleEffect from "@/components/ParticleEffect";
 import Logo3D from "@/components/Logo3D";
 import AnimatedBorder from "@/components/AnimatedBorder";
 
 const Hero = () => {
+  const navigate = useNavigate();
+  
   return (
     <section id="solutions" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Holographic Wave Background */}
@@ -58,10 +61,8 @@ const Hero = () => {
               <Button
                 size="lg"
                 className="gradient-premium text-base font-semibold px-8 py-6 neon-glow hover:scale-105 transition-transform duration-200"
-                onClick={() => {
-                  const contactSection = document.querySelector("#contact");
-                  contactSection?.scrollIntoView({ behavior: "smooth" });
-                }}
+                onClick={() => navigate('/contact')}
+                aria-label="Go to contact form"
               >
                 Request Demo
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -72,6 +73,10 @@ const Hero = () => {
                 size="lg"
                 variant="outline"
                 className="text-base font-semibold px-8 py-6 border-border-neon/40 hover:border-border-neon hover:bg-secondary/50 transition-all duration-200"
+                onClick={() => {
+                  const serviceSection = document.querySelector("#services");
+                  serviceSection?.scrollIntoView({ behavior: "smooth" });
+                }}
               >
                 View Solutions
               </Button>

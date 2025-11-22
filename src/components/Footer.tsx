@@ -1,12 +1,37 @@
 import { Linkedin, Twitter, Github, Mail } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import NewsletterForm from '@/components/NewsletterForm';
 
 const Footer = () => {
+  const navigate = useNavigate();
+  
   const footerLinks = {
-    Solutions: ["Cybersecurity", "AI Solutions", "Enterprise Software", "Cloud Services"],
-    Company: ["About Us", "Careers", "Press", "Contact"],
-    Resources: ["Blog", "Case Studies", "Documentation", "Support"],
-    Legal: ["Privacy Policy", "Terms of Service", "Security", "Compliance"],
+    Solutions: ["Cybersecurity", "AI Solutions", "Enterprise Software", "Cloud Services", "Full-Stack Development"],
+    Company: ["About Us", "Contact"],
+    Resources: ["Documentation", "Support"],
+    Legal: ["Privacy Policy", "Terms of Service", "Security"],
+  };
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
+    e.preventDefault();
+    const linkMap: Record<string, string> = {
+      "Documentation": "/documentation",
+      "Support": "/support",
+      "Privacy Policy": "/privacy-policy",
+      "Terms of Service": "/terms",
+      "Security": "/security",
+      "Cybersecurity": "/solutions/cybersecurity",
+      "AI Solutions": "/solutions/ai-solutions",
+      "Enterprise Software": "/solutions/enterprise-software",
+      "Cloud Services": "/solutions/cloud-services",
+      "Full-Stack Development": "/solutions/full-stack-development",
+      "DevOps": "/solutions/devops",
+      "Contact": "/contact",
+    };
+    const href = linkMap[link];
+    if (href) {
+      navigate(href);
+    }
   };
 
   return (
@@ -82,7 +107,8 @@ const Footer = () => {
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      onClick={(e) => handleLinkClick(e, link)}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                     >
                       {link}
                     </a>

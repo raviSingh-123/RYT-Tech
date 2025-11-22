@@ -1,6 +1,20 @@
+import { Link } from "react-router-dom";
 import { Shield, Cpu, Lock, Sparkles, Database, Zap,Layers } from "lucide-react";
 
 const Services = () => {
+  // Route mapping for each service
+  const getServiceRoute = (title: string): string => {
+    const routeMap: Record<string, string> = {
+      "Cybersecurity": "/solutions/cybersecurity",
+      "AI Solutions": "/solutions/ai-solutions",
+      "Enterprise Software": "/solutions/enterprise-software",
+      "FullStack Development": "/solutions/full-stack-development",
+      "AI-Powered Security": "/solutions/cybersecurity", // Maps to cybersecurity as it's security-related
+      "DevOps": "/solutions/devops",
+    };
+    return routeMap[title] || "#";
+  };
+
   const services = [
     {
       icon: Shield,
@@ -61,10 +75,13 @@ const Services = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
+            const route = getServiceRoute(service.title);
             return (
-              <div
+              <Link
                 key={index}
-                className="group glass-card p-6 lg:p-8 rounded-2xl hover:border-border-neon/60 transition-all duration-300 hover:-translate-y-1"
+                to={route}
+                className="group glass-card p-6 lg:p-8 rounded-2xl hover:border-border-neon/60 transition-all duration-300 hover:-translate-y-1 block cursor-pointer"
+                aria-label={`Navigate to ${service.title}`}
               >
                 
                 {/* ✔ Icon + Title Inline */}
@@ -91,7 +108,7 @@ const Services = () => {
                   ))}
                 </ul>
 
-              </div>
+              </Link>
             );
           })}
         </div>
